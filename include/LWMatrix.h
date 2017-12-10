@@ -41,9 +41,8 @@ public:
     };
 
 
-
-
     unsigned int ColumnSize(){ return columnCount; }
+
 
     void Print(){
         cout << "matrix\n-------------\n";
@@ -63,7 +62,9 @@ public:
         }
     }
 
+
     unsigned int RowSize(){ return rowCount; }
+
 
     LWMatrix Transpose(){
         LWMatrix p = LWMatrix<T>(rowCount,columnCount);
@@ -109,11 +110,9 @@ public:
     }
 
 
-
     T Value(unsigned int column, unsigned int row){
         return cell[column*columnCount + row];
     }
-
 
 
     T &operator [](unsigned int i){
@@ -125,7 +124,7 @@ public:
     You can only multiply two matrices if their dimensions are compatible , which means
     the number of columns in the first matrix is the same as the number of rows in the second matrix.
     */
-    LWMatrix operator *(LWMatrix o){
+    LWMatrix operator *(const LWMatrix o){
         if(columnCount != o.rowCount) return LWMatrix<T>(0,0,new T[0]{});
         //create a matrix with a size based on the column count of the left matrix and row count of the right matrix
         LWMatrix p = LWMatrix(o.columnCount,rowCount);
@@ -150,6 +149,7 @@ public:
         return p;
     }
 
+
     LWMatrix operator *(const T f){
         LWMatrix p = LWMatrix(columnCount,rowCount);
         y = 0;
@@ -166,12 +166,25 @@ public:
         return p;
     }
 
+
     bool operator ==(const LWMatrix o){
         if(columnCount != o.columnCount
         || rowCount != o.rowCount
         || memcmp(cell,o.cell,byteSize) != 0) return false;
 
         return true;
+    }
+
+    LWMatrix operator -(const LWMatrix o){
+        if(columnCount != o.columnCount
+           || rowCount != o.rowCount) return LWMatrix<T>(0,0,new T[0]{});
+        LWMatrix p = LWMatrix<T>(columnCount,rowCount,new T[totalCount]{});
+        i = 0;
+        while(i < totalCount){
+            p.cell[i] = cell[i] - o.cell[i];
+            ++i;
+        }
+        return p;
     }
 
 
