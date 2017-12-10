@@ -73,6 +73,7 @@ bool LWMatrx_test(){
     LWMatrix<double> ib = i * b;
     ib.Print();
     */
+
     /*
     //https://www.youtube.com/watch?v=DM6ILHA8aWU
     LWMatrix<double> a = LWMatrix<double>(2,2,new double[6]{1,3,2,4});
@@ -84,6 +85,30 @@ bool LWMatrx_test(){
     ab.Print();
     LWMatrix<double> ba = b * a;
     ba.Print();*/
+
+
+    /*
+    //transpose testing
+
+        LWMatrix<int> a = LWMatrix<int>(2,4,new int[8]{5,4,4,0,7,10,-1,8});
+    a.Print();
+    LWMatrix<int> b = a.Transpose();
+    b.Print();
+
+
+    LWMatrix<int> c = LWMatrix<int>(3,3,new int[9]{0,1,2,3,4,5,6,7,8});
+    c.Print();
+    LWMatrix<int> d = c.Transpose();
+    d.Print();
+
+
+    LWMatrix<int> e = LWMatrix<int>(6,2,new int[12]{1,2,3,4,5,6,-1,-2,-3,-4,-5,-6});
+    e.Print();
+    LWMatrix<int> f = e.Transpose();
+    f.Print();
+
+    */
+
 
 
 

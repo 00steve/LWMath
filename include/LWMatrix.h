@@ -76,7 +76,7 @@ public:
             x = 0;//0
             while(x < columnCount){
 
-                p.cell[x*rowCount + y] = i;
+                p.cell[x*rowCount + y] = cell[i];
 
                 ++i;
                 ++x;
