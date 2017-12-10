@@ -65,12 +65,38 @@ public:
 
     unsigned int RowSize(){ return rowCount; }
 
+    LWMatrix Transpose(){
+        LWMatrix p = LWMatrix<T>(rowCount,columnCount);
+        i = 0;//0
+        y = 0;//0
+        unsigned int f = 0;
+        while(y < rowCount){
+            x = 0;//0
+            while(x < columnCount){
+
+                p.cell[i] = cell[rowCount * x + y];
+                //p.cell[i] = cell[rowCount * y + x];
+                //0*4=0+0=0 : 0*2=0+0=0
+                //1*4=4+0=4 : 0*2=0+1=1
+                //f = columnCount * x
+
+                ++i;
+                ++x;
+            }
+            ++y;
+        }
+        /*while(i < totalCount){
+            p.cell[i] = cell[i];
+            ++i;
+        }*/
+        return p;
+    }
+
 
 
     T Value(unsigned int column, unsigned int row){
         return cell[column*columnCount + row];
     }
-
 
 
 
@@ -87,29 +113,22 @@ public:
         if(columnCount != o.rowCount) return LWMatrix<T>(0,0,new T[0]{});
         //create a matrix with a size based on the column count of the left matrix and row count of the right matrix
         LWMatrix p = LWMatrix(o.columnCount,rowCount);
-
         //loop through rows of left matrix and multiply by columns of right matrix
         i = 0;
         y = 0;
         unsigned int mi = 0;//multiply index
-        T total;
         while(y < rowCount){ //loop through rows of left matrix
             x = 0;
             while(x < o.columnCount){//loop through columns of right matrix
                 mi = 0;
-                total = 0;
+                p.cell[i] = 0;
                 while(mi < columnCount){
-                    //cout << cell[y*columnCount + mi] << " * " << o.cell[mi*o.columnCount + x] << "\t= "
-                    //    << cell[y*columnCount + mi] * o.cell[mi*o.columnCount + x] << endl;
-                    total += cell[y*columnCount + mi] * o.cell[mi*o.columnCount + x];
+                    p.cell[i] += cell[y*columnCount + mi] * o.cell[mi*o.columnCount + x];
                     ++mi;
                 }
-                //cout << "next right col\n";
-                p.cell[i] = total;
                 ++x;
                 ++i;
             }
-            //cout << "next left row\n";
             ++y;
         }
         return p;
