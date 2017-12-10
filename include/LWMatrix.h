@@ -20,6 +20,7 @@ private:
 
 
 public:
+
     LWMatrix(unsigned int columns,unsigned int rows) :
             columnCount(columns),
             rowCount(rows),
@@ -29,6 +30,7 @@ public:
             byteSize(sizeof(T)*totalCount)
             {
     };
+
 
     LWMatrix(unsigned int columns,unsigned int rows,T *values) :
             columnCount(columns),
@@ -41,7 +43,9 @@ public:
     };
 
 
-    unsigned int ColumnSize(){ return columnCount; }
+    unsigned int ColumnSize(){
+        return columnCount;
+    }
 
 
     void Print(){
@@ -63,49 +67,24 @@ public:
     }
 
 
-    unsigned int RowSize(){ return rowCount; }
+    unsigned int RowSize(){
+        return rowCount;
+    }
 
 
     LWMatrix Transpose(){
         LWMatrix p = LWMatrix<T>(rowCount,columnCount);
-        i = 0;//0
-        y = 0;//0
-
-        int nmc = 0;
-        int omc = 0;
+        i = 0;
+        y = 0;
         while(y < rowCount){
-            x = 0;//0
+            x = 0;
             while(x < columnCount){
-
                 p.cell[x*rowCount + y] = cell[i];
-
                 ++i;
                 ++x;
             }
             ++y;
         }
-        /*
-        unsigned int f = 0;
-        while(y < rowCount){
-            x = 0;//0
-            while(x < columnCount){
-
-                p.cell[i] = cell[rowCount * x + y];
-                //p.cell[i] = cell[rowCount * y + x];
-                //0*4=0+0=0 : 0*2=0+0=0
-                //1*4=4+0=4 : 0*2=0+1=1
-                //f = columnCount * x
-
-                ++i;
-                ++x;
-            }
-            ++y;
-        }
-        */
-        /*while(i < totalCount){
-            p.cell[i] = cell[i];
-            ++i;
-        }*/
         return p;
     }
 
@@ -175,6 +154,20 @@ public:
         return true;
     }
 
+
+    LWMatrix operator +(const LWMatrix o){
+        if(columnCount != o.columnCount
+           || rowCount != o.rowCount) return LWMatrix<T>(0,0,new T[0]{});
+        LWMatrix p = LWMatrix<T>(columnCount,rowCount,new T[totalCount]{});
+        i = 0;
+        while(i < totalCount){
+            p.cell[i] = cell[i] + o.cell[i];
+            ++i;
+        }
+        return p;
+    }
+
+
     LWMatrix operator -(const LWMatrix o){
         if(columnCount != o.columnCount
            || rowCount != o.rowCount) return LWMatrix<T>(0,0,new T[0]{});
@@ -188,11 +181,8 @@ public:
     }
 
 
+
+
+
 };
-
-
-
-
-
-
 #endif // LWMATRIX_H

@@ -18,7 +18,7 @@ int main(){
     LWMatrix<float> x = LWMatrix<float>(2,1,new float[2]{-3,4});
     LWMatrix<float> y = LWMatrix<float>(2,1,new float[2]{5,-2});
 
-    LWMatrix<float> v = y-x;
+    LWMatrix<float> v = y+x;
 
     v.Print();
 
