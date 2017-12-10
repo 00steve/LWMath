@@ -69,6 +69,21 @@ public:
         LWMatrix p = LWMatrix<T>(rowCount,columnCount);
         i = 0;//0
         y = 0;//0
+
+        int nmc = 0;
+        int omc = 0;
+        while(y < rowCount){
+            x = 0;//0
+            while(x < columnCount){
+
+                p.cell[x*rowCount + y] = i;
+
+                ++i;
+                ++x;
+            }
+            ++y;
+        }
+        /*
         unsigned int f = 0;
         while(y < rowCount){
             x = 0;//0
@@ -85,6 +100,7 @@ public:
             }
             ++y;
         }
+        */
         /*while(i < totalCount){
             p.cell[i] = cell[i];
             ++i;
