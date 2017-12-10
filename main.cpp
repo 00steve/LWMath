@@ -8,7 +8,7 @@ int main(){
 
     LWMatrx_test();
 
-
+/*
     LWMatrix<double> m = LWMatrix<double>(3,1,new double[3]{1,2,3});
     LWMatrix<double> m1 = LWMatrix<double>(1,3,new double[3]{4,5,6});
 
@@ -24,6 +24,52 @@ int main(){
 
     AB.Print();
     BA.Print();
+
+    [100112]⋅⎡⎣⎢3−1250−1⎤⎦
+    */
+
+/*
+    LWMatrix<double> m = LWMatrix<double>(3,1,new double[3]{1,4,0});
+    LWMatrix<double> m1 = LWMatrix<double>(1,3,new double[3]{2,-1,5});
+    m.Print();
+    m1.Print();
+    //LWMatrix<double> AB = m*m1;
+    LWMatrix<double> BA = m1*m;
+    //AB.Print();
+    BA.Print();
+*/
+
+/*
+    LWMatrix<double> a = LWMatrix<double>(3,2,new double[6]{1,0,2,-1,1,0});
+    LWMatrix<double> b = LWMatrix<double>(2,3,new double[6]{1,4,2,5,3,6});
+    LWMatrix<double> x = LWMatrix<double>(1,3,new double[3]{3,2,1});
+    LWMatrix<double> i = LWMatrix<double>(3,3,new double[9]{1,0,0,0,1,0,0,0,1});
+
+    a.Print();
+    b.Print();
+    x.Print();
+    i.Print();
+
+    LWMatrix<double> ax = a*x;
+    ax.Print();
+    LWMatrix<double> ix = i*x;
+    ix.Print();
+    LWMatrix<double> ab = a*b;
+    ab.Print();
+    LWMatrix<double> ib = i * b;
+    ib.Print();
+*/
+
+    //https://www.youtube.com/watch?v=DM6ILHA8aWU
+    LWMatrix<double> a = LWMatrix<double>(2,2,new double[6]{1,3,2,4});
+    LWMatrix<double> b = LWMatrix<double>(2,2,new double[6]{5,6,7,8});
+    a.Print();
+    b.Print();
+
+    LWMatrix<double> ab = a * b;
+    ab.Print();
+    LWMatrix<double> ba = b * a;
+    ba.Print();
 
     return 0;
 }

@@ -85,22 +85,33 @@ public:
     */
     LWMatrix operator *(LWMatrix o){
         if(columnCount != o.rowCount) return LWMatrix<T>(0,0,new T[0]{});
-
-
+        //create a matrix with a size based on the column count of the left matrix and row count of the right matrix
         LWMatrix p = LWMatrix(o.columnCount,rowCount);
-        y = 0;
+
+        //loop through rows of left matrix and multiply by columns of right matrix
         i = 0;
-        while(y < rowCount){
+        y = 0;
+        unsigned int mi = 0;//multiply index
+        T total;
+        while(y < rowCount){ //loop through rows of left matrix
             x = 0;
-            p[i] = 0;
-            while(x < o.columnCount){
-                cout << cell[y] << "*" << o.cell[x] << endl;
-                p[i++] += cell[y]*o.cell[x];
+            while(x < o.columnCount){//loop through columns of right matrix
+                mi = 0;
+                total = 0;
+                while(mi < columnCount){
+                    //cout << cell[y*columnCount + mi] << " * " << o.cell[mi*o.columnCount + x] << "\t= "
+                    //    << cell[y*columnCount + mi] * o.cell[mi*o.columnCount + x] << endl;
+                    total += cell[y*columnCount + mi] * o.cell[mi*o.columnCount + x];
+                    ++mi;
+                }
+                //cout << "next right col\n";
+                p.cell[i] = total;
                 ++x;
+                ++i;
             }
+            //cout << "next left row\n";
             ++y;
         }
-
         return p;
     }
 
