@@ -35,6 +35,8 @@
 		</Compiler>
 		<Unit filename="include/LWMatrix.h" />
 		<Unit filename="include/LWMatrix_test.h" />
+		<Unit filename="include/LWVector2.h" />
+		<Unit filename="include/LWVector2_test.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
